@@ -20,3 +20,11 @@ void init_GPIO(const uint tabSize,const  uint* GpioToInit){
     }
     
 }
+
+void refresh_led(uint nbColumnToModify, uint* tabOfValue){
+// map on 5 for both values + case to look at changes and finaly changes  
+    static uint oldFirstColumnValue = 0;
+    static uint oldSecondColumnValue = 0;
+    int difference = 0;
+
+}

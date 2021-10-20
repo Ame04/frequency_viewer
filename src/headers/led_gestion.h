@@ -24,4 +24,13 @@
  */ 
 void init_GPIO(const uint tabSize, const uint* GpioToInit);
 
+/**
+ * \fn void refresh_led(uint nbColumnToModify, uint* tabOfValue)
+ * \brief change the led display
+ * 
+ * \param nbColumnToModify the size of the given tab
+ * \param tabOfValue A tap with the value to map on each column of LED
+ */ 
+void refresh_led(uint nbColumnToModify, uint* tabOfValue);
+
 #endif
