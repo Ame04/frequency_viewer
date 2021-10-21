@@ -1,2 +1,3 @@
 #makes git ignore some folders
 build
+.vscode
