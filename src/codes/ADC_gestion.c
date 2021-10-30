@@ -11,3 +11,15 @@
 
 #include "../headers/ADC_gestion.h"
 
+void init_ADC(){
+    adc_init();                         //init and reset the adc
+    adc_gpio_init(ADC_GPIO);            //init the gpio to be usable for the adc
+    adc_set_temp_sensor_enabled(false); //we don't need it
+    adc_set_clkdiv(CONVERSION_FREQUENCY_RATIO);//to change the frequency of the conversion                    //need
+    adc_fifo_setup(true,false,0,false,false);
+    adc_irq_set_enabled(true);
+    adc_select_input((ADC_GPIO%26));    //select an input for the adc
+    
+    adc_run(true);                      //launch the first conversion
+
+}
