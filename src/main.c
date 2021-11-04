@@ -16,6 +16,9 @@ int main() {
     // Initialize LED pin
     init_GPIO();
 
+    //launch the conversions
+    adc_run(true);                      
+
     while (true) {
         
     }

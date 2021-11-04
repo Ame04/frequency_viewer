@@ -13,6 +13,7 @@
 #define ADC_GESTION_H
 
     #include "hardware/adc.h"
+    #include "hardware/irq.h"
 
     /**
     * \def ADC_GPIO
@@ -25,6 +26,15 @@
     * \brief It is (48 000 000/(the frequency you want to achive))-1
     */
     #define CONVERSION_FREQUENCY_RATIO 999
+
+/************ FONCTIONS ******************/
+
+    /**
+     * \fn void init_ADC()
+     * \brief Initialyses the ADC.
+     * 
+     */
+    void adc_irq_handler_t()
 
     /**
      * \fn void init_ADC()
