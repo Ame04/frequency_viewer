@@ -14,10 +14,14 @@ pico_sdk_init()
 
 file(GLOB HEADERS
     "${CMAKE_SOURCE_DIR}/src/headers/led_gestion.h"
+    "${CMAKE_SOURCE_DIR}/src/headers/ADC_gestion.h"
+    "${CMAKE_SOURCE_DIR}/src/headers/my_utils.h"
 )
 
 file(GLOB FILES
     "${CMAKE_SOURCE_DIR}/src/codes/led_gestion.c"
+    "${CMAKE_SOURCE_DIR}/src/codes/ADC_gestion.c"
+    "${CMAKE_SOURCE_DIR}/src/codes/my_utils.c"
 )
 
 

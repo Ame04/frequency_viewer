@@ -34,7 +34,7 @@
      * \brief Initialyses the ADC.
      * 
      */
-    void adc_irq_handler_t()
+    void adc_irq_handler_t();
 
     /**
      * \fn void init_ADC()

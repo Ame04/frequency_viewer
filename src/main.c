@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "headers/ADC_gestion.h"
 #include "headers/led_gestion.h"
+#include "headers/my_utils.h"
 
 int main() {
 
@@ -11,12 +12,12 @@ int main() {
     stdio_init_all();
 
     //Initialize the ADC
-    
+    init_ADC();
 
     // Initialize LED pin
     init_GPIO();
 
-    //launch the conversions
+    //launch the conversions and the programme
     adc_run(true);                      
 
     while (true) {

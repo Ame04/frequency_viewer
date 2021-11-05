@@ -18,7 +18,7 @@ void init_GPIO(){
    {
        for(int j=0; j<NB_LED_PER_COLUMN ; ++j)
        {
-           Led currentLed=ledMatix[i][j];
+           Led currentLed=ledMatix[i][j]; //retreive the current led in the matrix
            if(nbLedInit<NB_GPIO_TO_INIT)
            {
                currentLed.gpio=gpioToInit[nbLedInit];
