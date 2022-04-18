@@ -40,7 +40,7 @@ void init_GPIO(){
 void refresh_led_from_amplitude(uint* tabOfValue){
 // map on 5 for all the values, uses NB_AMPLITUDE_VALUE to map
     for(int i =0 ; i<NB_LED_COLUMN ; ++i){
-        int futureValue = (int)(tabOfValue[i]/NB_AMPLITUDE_VALUES*NB_LED_PER_COLUMN);
+        int futureValue = (int)(((float)tabOfValue[i])/NB_AMPLITUDE_VALUES*NB_LED_PER_COLUMN);
         if(futureValue==5)
         {
             tabOfValue[i]=4;
