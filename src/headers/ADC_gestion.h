@@ -30,8 +30,8 @@
 /************ FONCTIONS ******************/
 
     /**
-     * \fn void init_ADC()
-     * \brief Initialyses the ADC.
+     * \fn void adc_irq_handler_t()
+     * \brief The handler functio for the adc's irq.
      * 
      */
     void adc_irq_handler_t();

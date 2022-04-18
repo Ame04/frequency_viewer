@@ -37,9 +37,9 @@ void init_GPIO(){
     
 }
 
-void refresh_led_from_amplitude(uint nbColumnToModify, uint* tabOfValue){
+void refresh_led_from_amplitude(uint* tabOfValue){
 // map on 5 for all the values, uses NB_AMPLITUDE_VALUE to map
-    for(int i =0 ; i<nbColumnToModify ; ++i){
+    for(int i =0 ; i<NB_LED_COLUMN ; ++i){
         int futureValue = (int)(tabOfValue[i]/NB_AMPLITUDE_VALUES*NB_LED_PER_COLUMN);
         if(futureValue==5)
         {
@@ -50,10 +50,10 @@ void refresh_led_from_amplitude(uint nbColumnToModify, uint* tabOfValue){
         }
     }
 
-    refresh_led(nbColumnToModify, tabOfValue);
+    refresh_led(tabOfValue);
 }
 
-void refresh_led(uint nbColumnToModify, uint* tabOfValue){
+void refresh_led(uint* tabOfValue){
 //case to look at changes + finaly changes  
     static uint oldColumnValues[NB_LED_COLUMN];
     static bool firstRound = true;

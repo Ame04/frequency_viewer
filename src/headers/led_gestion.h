@@ -48,7 +48,7 @@
 
     /**
     * \struct Led
-    * \brief Represetn a led in the system
+    * \brief Represent a led in the system
     */
     typedef struct Led
     {
@@ -56,8 +56,7 @@
         bool state;
     }Led;
     
-
-    Led ledMatix[NB_LED_COLUMN+1][NB_LED_PER_COLUMN];
+    Led ledMatix[NB_LED_COLUMN+1][NB_LED_PER_COLUMN]; /*!< The matrix that hold the leds structure */
 
     /**
      * \fn void init_GPIO()
@@ -70,21 +69,21 @@
     void init_GPIO();
 
     /**
-     * \fn void refresh_led_from_amplitude(uint nbColumnToModify, uint* tabOfValue)
+     * \fn void refresh_led_from_amplitude(uint* tabOfValue)
      * \brief Maps the amplitude value to give it to refresh_led
      * 
      * \param nbColumnToModify the size of the given tab
-     * \param tabOfValue A tap with the value to map on each column of LED
+     * \param tabOfValue A tab with the value to map on each column of LED
      */ 
-    void refresh_led_from_amplitude(uint nbColumnToModify, uint* tabOfValue);
+    void refresh_led_from_amplitude(uint* tabOfValue);
 
     /**
-     * \fn void refresh_led(uint nbColumnToModify, uint* tabOfValue)
-     * \brief Change the led display
+     * \fn void refresh_led(uint* tabOfValue)
+     * \brief Change the led displayed
      * 
      * \param nbColumnToModify the size of the given tab
      * \param tabOfValue A tap with the value to map on each column of LED
      */ 
-    void refresh_led(uint nbColumnToModify, uint* tabOfValue);
+    void refresh_led(uint* tabOfValue);
 
 #endif

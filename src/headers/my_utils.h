@@ -18,7 +18,7 @@
         * \def CIRCULAR_BUFFER_SIZE
         * \brief The GPIO used for the ADC
         */
-    #define CIRCULAR_BUFFER_SIZE 512 //as to be a power of 2 for the circular buffer to be efficiente
+    #define CIRCULAR_BUFFER_SIZE 512 //as to be a power of 2 for the circular buffer to be efficient
 
     typedef struct circularBuffer{
         int16_t buffer[CIRCULAR_BUFFER_SIZE];
