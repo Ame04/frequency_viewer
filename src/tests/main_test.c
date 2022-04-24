@@ -21,6 +21,6 @@ int main() {
     //adc_run(true);                      
 
     while (true) {
-        test_led()
+        test_led();
     }
 }

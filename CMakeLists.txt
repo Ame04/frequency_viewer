@@ -13,25 +13,45 @@ set(CMAKE_CXX_STANDARD 17)
 pico_sdk_init()
 
 file(GLOB HEADERS
-    "${CMAKE_SOURCE_DIR}/src/headers/led_gestion.h"
-    "${CMAKE_SOURCE_DIR}/src/headers/ADC_gestion.h"
-    "${CMAKE_SOURCE_DIR}/src/headers/my_utils.h"
+        "${CMAKE_SOURCE_DIR}/src/headers/led_gestion.h"
+        "${CMAKE_SOURCE_DIR}/src/headers/ADC_gestion.h"
+        "${CMAKE_SOURCE_DIR}/src/headers/my_utils.h"
 )
 
 file(GLOB FILES
-    "${CMAKE_SOURCE_DIR}/src/codes/led_gestion.c"
-    "${CMAKE_SOURCE_DIR}/src/codes/ADC_gestion.c"
-    "${CMAKE_SOURCE_DIR}/src/codes/my_utils.c"
+        "${CMAKE_SOURCE_DIR}/src/codes/led_gestion.c"
+        "${CMAKE_SOURCE_DIR}/src/codes/ADC_gestion.c"
+        "${CMAKE_SOURCE_DIR}/src/codes/my_utils.c"
+)
+
+file(GLOB TEST_HEADERS
+        "${CMAKE_SOURCE_DIR}/src/tests/headers/test_led.h"
+)
+
+file(GLOB TEST_FILES
+        "${CMAKE_SOURCE_DIR}/src/tests/codes/test_led.c"
 )
 
 
 if (TARGET tinyusb_device)
+        if (NOT TEST)
         # point out the CMake, where to find the executable source file
         add_executable(${PROJECT_NAME}
                 ${CMAKE_SOURCE_DIR}/src/main.c
                 ${FILES}
                 ${HEADERS}
         )
+
+        elseif (TEST)
+                # point out the CMake, where to find the executable source file
+                add_executable(${PROJECT_NAME}
+                        ${CMAKE_SOURCE_DIR}/src/tests/main_test.c
+                        ${FILES}
+                        ${HEADERS}
+                        ${TEST_HEADERS}
+                        ${TEST_FILES}
+                )
+        endif()
 
         # create map/bin/hex/uf2 files.
         pico_add_extra_outputs(${PROJECT_NAME})
