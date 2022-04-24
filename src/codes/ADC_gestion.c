@@ -11,8 +11,12 @@
 
 #include "../headers/ADC_gestion.h"
 
+uint8_t new_val;
+uint16_t ADC_val;
+
 void adc_irq_handler(){
-    
+    ADC_val=adc_fifo_get();
+    new_val=1;
 }
 
 void init_ADC(){
@@ -24,6 +28,9 @@ void init_ADC(){
     adc_fifo_setup(true,false,1,false,false);   // enable, enable dma, threshold for irq, bit 15 is error bit, perform bit shift
     adc_irq_set_enabled(true);          // enable but no handler at the moment 
     adc_select_input((ADC_GPIO%26));    //select an input for the adc
+
+    new_val=0;
+    ADC_val=0;
 
     irq_clear (ADC_IRQ_FIFO);
     irq_set_enabled (ADC_IRQ_FIFO, true);
