@@ -11,6 +11,8 @@
 
 #include "../headers/led_gestion.h"
 
+static Led ledMatrix[NB_LED_COLUMN+1][NB_LED_PER_COLUMN];
+
 void init_GPIO(){
    const uint gpioToInit[]={GPIO_TO_INIT};
    int nbLedInit=0;
@@ -18,7 +20,7 @@ void init_GPIO(){
    {
        for(int j=0; j<NB_LED_PER_COLUMN ; ++j)
        {
-           Led currentLed=ledMatix[i][j]; //retreive the current led in the matrix
+           Led currentLed=ledMatrix[i][j]; //retreive the current led in the matrix
            if(nbLedInit<NB_GPIO_TO_INIT)
            {
                currentLed.gpio=gpioToInit[nbLedInit];
@@ -77,8 +79,8 @@ void refresh_led(uint* tabOfValue){
             sign=difference/abs(difference);
             for (int j = oldColumnValues[i]; i!=tabOfValue[i]; i+=sign)
             {
-                ledMatix[i][j].state=!ledMatix[i][j].state;
-                gpio_put(ledMatix[i][j].gpio,ledMatix[i][j].state);
+                ledMatrix[i][j].state=!ledMatrix[i][j].state;
+                gpio_put(ledMatrix[i][j].gpio,ledMatrix[i][j].state);
             }
             
             

@@ -55,8 +55,6 @@
         uint gpio;
         bool state;
     }Led;
-    
-    Led ledMatix[NB_LED_COLUMN+1][NB_LED_PER_COLUMN]; /*!< The matrix that hold the leds structure */
 
     /**
      * \fn void init_GPIO()
