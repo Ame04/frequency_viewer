@@ -30,11 +30,11 @@
 /************ FONCTIONS ******************/
 
     /**
-     * \fn void adc_irq_handler_t()
-     * \brief The handler functio for the adc's irq.
+     * \fn void adc_irq_handler()
+     * \brief The handler function for the adc's irq.
      * 
      */
-    void adc_irq_handler_t();
+    void adc_irq_handler();
 
     /**
      * \fn void init_ADC()

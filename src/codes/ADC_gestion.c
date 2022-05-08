@@ -19,7 +19,7 @@ void adc_irq_handler(){
     new_val=1;
 }
 
-void init_ADC(){
+void init_ADC(){//To do : add prints
 
     adc_init();                         //init and reset the adc
     adc_gpio_init(ADC_GPIO);            //init the gpio to be usable for the adc
