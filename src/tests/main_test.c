@@ -7,10 +7,10 @@
 
 int main() {
 
-    
     // Initialize chosen serial port
     stdio_init_all();
-
+    sleep_ms(10000);
+    printf("Begining initialisations\r\n");
     //Initialize the ADC
     //init_ADC();
 
@@ -18,9 +18,15 @@ int main() {
     init_GPIO();
 
     //launch the conversions and the programme
-    //adc_run(true);                      
+    //adc_run(true);
 
+    printf("Begining of the tests ... \r\n");                    
+    sleep_ms(2000);
     while (true) {
+        printf("Test led ...");
         test_led();
+        printf("Test led : done");
+        sleep_ms(1000);
+        return 1;
     }
 }

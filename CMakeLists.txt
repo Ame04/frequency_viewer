@@ -43,6 +43,7 @@ if (TARGET tinyusb_device)
         )
 
         elseif (TEST)
+                message("********* Build in Test mode *********")
                 # point out the CMake, where to find the executable source file
                 add_executable(${PROJECT_NAME}
                         ${CMAKE_SOURCE_DIR}/src/tests/main_test.c

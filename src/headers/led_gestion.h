@@ -14,6 +14,8 @@
 #define LED_GESTION_H
 
     #include "hardware/gpio.h"
+    #include "pico/stdlib.h"
+    #include <stdio.h>
     #include <stdlib.h>
 
     /**
@@ -36,15 +38,15 @@
 
     /**
     * \def GPIO_TO_INIT
-    * \brief All the Gpio to init, they have to be separated by comas as they will be transfered dirrectly in a tab. You can not use the GPIO 0.
+    * \brief All the Gpio to init, they have to be separated by comas as they will be transfered directly in a tab. You can not use the GPIO 0.
     */
-    #define GPIO_TO_INIT 1,2,3,4,5,6,7,8,9,10,11
+    #define GPIO_TO_INIT 2,3,4,5,6,21,20,19,18,17
 
     /**
     * \def NB_GPIO_TO_INIT
     * \brief The number of Gpio to init
     */
-    #define NB_GPIO_TO_INIT 11
+    #define NB_GPIO_TO_INIT 10
 
     /**
     * \struct Led
