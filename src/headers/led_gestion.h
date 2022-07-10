@@ -75,7 +75,7 @@
      * \param nbColumnToModify the size of the given tab
      * \param tabOfValue A tab with the value to map on each column of LED
      */ 
-    void refresh_led_from_amplitude(uint* tabOfValue);
+    void refresh_led_from_amplitude(uint16_t* tabOfValue);
 
     /**
      * \fn void refresh_led(uint* tabOfValue)
@@ -84,6 +84,6 @@
      * \param nbColumnToModify the size of the given tab
      * \param tabOfValue A tap with the value to map on each column of LED
      */ 
-    void refresh_led(uint* tabOfValue);
+    void refresh_led(uint16_t* tabOfValue);
 
-#endif
+#endif //LED_GESTION_H

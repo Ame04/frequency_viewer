@@ -42,4 +42,4 @@
      */
     void addDataToCircularBuffer(circularBuffer* c, int16_t newData);
 
-#endif
+#endif //MY_UTILS_H

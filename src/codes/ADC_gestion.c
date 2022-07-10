@@ -11,8 +11,8 @@
 
 #include "../headers/ADC_gestion.h"
 
-uint8_t new_val;
-uint16_t ADC_val;
+volatile uint8_t new_val;
+volatile uint16_t ADC_val;
 
 void adc_irq_handler(){
     ADC_val=adc_fifo_get();
@@ -21,6 +21,7 @@ void adc_irq_handler(){
 
 void init_ADC(){//To do : add prints
 
+    printf("GPIO initialisation ... \r\n");
     adc_init();                         //init and reset the adc
     adc_gpio_init(ADC_GPIO);            //init the gpio to be usable for the adc
     adc_set_temp_sensor_enabled(false); //we don't need it
@@ -35,5 +36,6 @@ void init_ADC(){//To do : add prints
     irq_clear (ADC_IRQ_FIFO);
     irq_set_enabled (ADC_IRQ_FIFO, true);
     irq_set_exclusive_handler(ADC_IRQ_FIFO,adc_irq_handler);
+    printf("GPIO initialisation : done \r\n");
 
 }

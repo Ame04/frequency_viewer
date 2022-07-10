@@ -17,9 +17,15 @@ void init_GPIO(){
     printf("GPIO initialisation ... \r\n");
     const uint gpioToInit[]={GPIO_TO_INIT};
     int nbLedInit=0;
-    for(int i=0 ; i<(NB_LED_COLUMN+1) ; ++i)
+    uint16_t tab_of_value[NB_LED_COLUMN];
+    for (uint8_t i=0 ; i<NB_LED_COLUMN ; ++i)
     {
-        for(int j=0; j<NB_LED_PER_COLUMN ; ++j)
+        tab_of_value[i]=0;
+    }
+    // Initialisation of the leds 
+    for(uint8_t i=0 ; i<(NB_LED_COLUMN+1) ; ++i)
+    {
+        for(uint8_t j=0; j<NB_LED_PER_COLUMN ; ++j)
         {
             Led currentLed;
             if(nbLedInit<NB_GPIO_TO_INIT)
@@ -28,7 +34,7 @@ void init_GPIO(){
                 gpio_init(currentLed.gpio);
                 gpio_set_dir(currentLed.gpio,GPIO_OUT);
                 gpio_put(currentLed.gpio,false);
-                sleep_ms(1000);
+                sleep_ms(500);
                 gpio_put(currentLed.gpio,true);
             }
             else
@@ -40,13 +46,16 @@ void init_GPIO(){
             nbLedInit++;
         }
     }
+    // Do a refresh ones to initialize the static tab in it
+    refresh_led_from_amplitude(tab_of_value);
+
     printf("GPIO initialisation : Done \r\n");
 }
 
-void refresh_led_from_amplitude(uint* tabOfValue){
+void refresh_led_from_amplitude(uint16_t* tabOfValue){
 // map on 5 for all the values, uses NB_AMPLITUDE_VALUE to map
-    for(int i =0 ; i<NB_LED_COLUMN ; ++i){
-        int futureValue = (int)(((float)tabOfValue[i])/NB_AMPLITUDE_VALUES*(NB_LED_PER_COLUMN+1));
+    for(uint8_t i =0 ; i<NB_LED_COLUMN ; ++i){
+        uint8_t futureValue = (uint8_t)(((float)tabOfValue[i])/NB_AMPLITUDE_VALUES*(NB_LED_PER_COLUMN+1));
         if(futureValue==NB_LED_PER_COLUMN+1)
         {
             tabOfValue[i]=NB_LED_PER_COLUMN;
@@ -54,13 +63,12 @@ void refresh_led_from_amplitude(uint* tabOfValue){
         else{
             tabOfValue[i]=futureValue;
         }
-        printf("Future value = %d\r\n", futureValue);
     }
 
     refresh_led(tabOfValue);
 }
 
-void refresh_led(uint* tabOfValue){
+void refresh_led(uint16_t* tabOfValue){
 //case to look at changes + finaly changes  
     static uint oldColumnValues[NB_LED_COLUMN];
     static bool firstRound = true;
@@ -68,24 +76,22 @@ void refresh_led(uint* tabOfValue){
     //init of the static tab, needs to be done only one time
     if (firstRound){
         firstRound=!firstRound;
-        for(int i = 0; i<NB_LED_COLUMN ; ++i){
+        for(uint8_t i = 0; i<NB_LED_COLUMN ; ++i){
             oldColumnValues[i]=0;
         }
         printf("First init of oldColumnValues : done\r\n");
     }
 
-    int difference = 0;
-    int sign=0;
-    for(int i=0; i<NB_LED_COLUMN; ++i)
+    int8_t difference = 0;
+    int8_t sign=0;
+    for(uint8_t i=0; i<NB_LED_COLUMN; ++i)
     {
-        printf("Old column value = %d at the begining of the changing\r\n", oldColumnValues[i]);
         difference = tabOfValue[i]-oldColumnValues[i];
-        printf("Difference = %d\r\n", difference);
         if(difference)
         {
             sign=difference/abs(difference);
-            int led;
-            for (int j = oldColumnValues[i]; j!=tabOfValue[i]; j+=sign)
+            uint8_t led;
+            for (uint8_t j = oldColumnValues[i]; j!=tabOfValue[i]; j+=sign)
             {
                 if(sign==-1){
                     led=j-1;
@@ -95,10 +101,8 @@ void refresh_led(uint* tabOfValue){
                 }
                 ledMatrix[i][led].state=!ledMatrix[i][led].state;
                 gpio_put(ledMatrix[i][led].gpio,ledMatrix[i][led].state);
-                printf("Gpio %d as been changed\r\n", ledMatrix[i][led].gpio);
             }
             oldColumnValues[i]=tabOfValue[i];
-            printf("Old column value = %d at the end of the changing\r\n", oldColumnValues[i]);
         }
     }
     

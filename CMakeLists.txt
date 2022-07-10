@@ -26,10 +26,12 @@ file(GLOB FILES
 
 file(GLOB TEST_HEADERS
         "${CMAKE_SOURCE_DIR}/src/tests/headers/test_led.h"
+        "${CMAKE_SOURCE_DIR}/src/tests/headers/test_adc.h"
 )
 
 file(GLOB TEST_FILES
         "${CMAKE_SOURCE_DIR}/src/tests/codes/test_led.c"
+        "${CMAKE_SOURCE_DIR}/src/tests/codes/test_adc.c"
 )
 
 

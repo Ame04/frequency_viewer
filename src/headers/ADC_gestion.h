@@ -12,8 +12,13 @@
 #ifndef ADC_GESTION_H
 #define ADC_GESTION_H
 
+    #include <stdio.h>
     #include "hardware/adc.h"
     #include "hardware/irq.h"
+
+    // Export global variables
+    extern volatile uint8_t new_val;
+    extern volatile uint16_t ADC_val;
 
     /**
     * \def ADC_GPIO
@@ -44,4 +49,4 @@
     void init_ADC();
 
 
-#endif 
+#endif //ADC_GESTION_H
